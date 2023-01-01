@@ -1,9 +1,8 @@
 package tech.x31415926535.web;
 
+import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.ServletComponentScan;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
 /**
@@ -13,10 +12,10 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @ServletComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @SpringBootApplication(scanBasePackages = {"tech.x31415926535"})
-public class ServiceInitializer  extends SpringBootServletInitializer {
+public class ServiceInitializer {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {
-        return applicationBuilder.sources(ServiceInitializer.class);
+    public static void main(String[] args) {
+        SpringApplication.run(ServiceInitializer.class);
     }
+
 }
