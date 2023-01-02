@@ -11,7 +11,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @ServletComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-@SpringBootApplication(scanBasePackages = {"tech.x31415926535"})
+@SpringBootApplication(scanBasePackages = {"tech.x31415926535.*"})
 public class ServiceInitializer {
 
     public static void main(String[] args) {

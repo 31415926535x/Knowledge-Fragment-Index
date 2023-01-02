@@ -10,3 +10,9 @@ spring:
   web:
     resources:
       static-locations: classpath:/, classpath:/templates
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+swagger:
+  enabled: true
