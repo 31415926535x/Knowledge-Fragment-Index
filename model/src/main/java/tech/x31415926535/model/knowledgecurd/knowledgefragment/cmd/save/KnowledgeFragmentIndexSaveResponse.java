@@ -1,4 +1,4 @@
-package tech.x31415926535.model.knowledgecurd.save;
+package tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save;
 
 import lombok.Data;
 

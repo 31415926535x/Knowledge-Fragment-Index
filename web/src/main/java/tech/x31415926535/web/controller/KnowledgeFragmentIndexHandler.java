@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import tech.x31415926535.model.knowledgecurd.save.KnowledgeFragmentIndexSaveRequest;
-import tech.x31415926535.model.knowledgecurd.save.KnowledgeFragmentIndexSaveResponse;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveRequest;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveResponse;
 import tech.x31415926535.service.KnowledgeFragmentIndexService;
 import tech.x31415926535.service.validate.SaveKnowledgeFragmentIndexValidate;
 

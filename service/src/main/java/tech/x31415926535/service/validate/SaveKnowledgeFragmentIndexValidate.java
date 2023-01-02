@@ -4,7 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import tech.x31415926535.model.knowledgecurd.common.exception.RequestValidateException;
-import tech.x31415926535.model.knowledgecurd.save.KnowledgeFragmentIndexSaveRequest;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveRequest;
 
 import java.util.Objects;
 

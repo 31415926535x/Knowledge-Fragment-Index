@@ -2,7 +2,7 @@ package tech.x31415926535.service.converter;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import tech.x31415926535.model.knowledgecurd.save.KnowledgeFragmentIndexSaveResponse;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveResponse;
 
 import java.util.Objects;
 

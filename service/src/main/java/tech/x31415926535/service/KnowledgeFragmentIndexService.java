@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import tech.x31415926535.business.saveindex.processor.SaveKnowledgeFragmentIndexProcessor;
-import tech.x31415926535.model.knowledgecurd.save.KnowledgeFragmentIndexSaveRequest;
-import tech.x31415926535.model.knowledgecurd.save.KnowledgeFragmentIndexSaveResponse;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveRequest;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveResponse;
 import tech.x31415926535.service.converter.SaveKnowledgeFragmentIndexConverter;
 
 import javax.annotation.Resource;
