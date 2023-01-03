@@ -16,3 +16,8 @@ spring:
 
 swagger:
   enabled: true
+
+
+notion:
+  secrets: secret_maPyFv5VNIS00RKJf36p4t9qmwo8m8YGZNAxhcC10Y5
+  page-share-link: 1593df3a46e249f79749cc08490f6520
