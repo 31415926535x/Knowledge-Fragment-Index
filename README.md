@@ -29,3 +29,28 @@ yarn build
 ## maven 打包
 
 使用maven打包出jar包即可上传到 vps 运行提供服务
+
+# 开发日志
+
+## notion-api
+
+## 查询db接口 get
+
+查询接口格式为: ``https://api.notion.com/v1/databases/1593df3a46e249f79749cc08490f6520/query``
+其中 header 中要填入token:
+
+![img.png](readme/query-api.png)
+
+对应的 cURL为:
+
+```curl
+curl --location --request POST 'https://api.notion.com/v1/databases/1593df3a46e249f79749cc08490f6520/query' \
+--header 'Authorization: Bearer secret_maPyFv5VNIS00RKJf36p4t9qmwo8m8YGZNAxhcC10Y5' \
+--header 'Notion-Version: 2022-06-28' \
+--header 'User-Agent: Apifox/1.0.0 (https://www.apifox.cn)' \
+--header 'Content-Type: application/json'
+```
+
+同时可以注意到返回的response中我们关心的就是 ``result.properties`` 中的map数据
+
+## 新增接口 put
