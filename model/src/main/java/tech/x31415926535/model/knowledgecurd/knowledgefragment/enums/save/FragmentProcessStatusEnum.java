@@ -1,11 +1,11 @@
-package tech.x31415926535.model.knowledgecurd.notion.enums;
+package tech.x31415926535.model.knowledgecurd.knowledgefragment.enums.save;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum NotionFragmentStatusEnum {
+public enum FragmentProcessStatusEnum {
 
     /**
      * 首次添加，且未开始处理
@@ -25,8 +25,8 @@ public enum NotionFragmentStatusEnum {
 
     private final String status;
 
-    public NotionFragmentStatusEnum getStatus(String status) {
-        for (NotionFragmentStatusEnum value : NotionFragmentStatusEnum.values()) {
+    public FragmentProcessStatusEnum getStatus(String status) {
+        for (FragmentProcessStatusEnum value : FragmentProcessStatusEnum.values()) {
             if (value.getStatus().equalsIgnoreCase(status)) {
                 return value;
             }

@@ -5,10 +5,8 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import tech.x31415926535.model.knowledgecurd.common.rpc.ResponseEnvelope;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveRequest;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveResponse;
 import tech.x31415926535.service.KnowledgeFragmentIndexService;
@@ -22,6 +20,7 @@ import javax.annotation.Resource;
  */
 @RequestMapping("/knowledge")
 @RestController
+@ResponseBody
 @Api(value = "知识碎片服务接口")
 public class KnowledgeFragmentIndexHandler {
 
@@ -42,7 +41,7 @@ public class KnowledgeFragmentIndexHandler {
 
     @ApiOperation("保存知识碎片")
     @PostMapping("/save")
-    public ResponseEntity<KnowledgeFragmentIndexSaveResponse> save(KnowledgeFragmentIndexSaveRequest request) {
+    public ResponseEntity<ResponseEnvelope<KnowledgeFragmentIndexSaveResponse>> save(@RequestBody KnowledgeFragmentIndexSaveRequest request) {
         LOG.info(LOG_TITLE, request);
 
         validate.checkSaveRequest(request);

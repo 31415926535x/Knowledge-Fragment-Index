@@ -1,5 +1,6 @@
 package tech.x31415926535.web;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
@@ -11,7 +12,8 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
  */
 @ServletComponentScan
 @EnableAspectJAutoProxy(proxyTargetClass = true)
-@SpringBootApplication(scanBasePackages = {"tech.x31415926535.*"})
+@SpringBootApplication(scanBasePackages = {"tech.x31415926535.*", "knowledgecurd.*"})
+@MapperScan("knowledgecurd.knowledgefragment.*")
 public class ServiceInitializer {
 
     public static void main(String[] args) {

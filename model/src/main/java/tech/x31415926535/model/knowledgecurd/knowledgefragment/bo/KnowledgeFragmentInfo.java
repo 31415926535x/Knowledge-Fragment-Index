@@ -1,9 +1,9 @@
-package tech.x31415926535.model.knowledgecurd.notion.cmd;
+package tech.x31415926535.model.knowledgecurd.knowledgefragment.bo;
 
 import lombok.Builder;
 import lombok.Data;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.enums.save.FragmentProcessStatusEnum;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.enums.save.WebContentTypeEnum;
-import tech.x31415926535.model.knowledgecurd.notion.enums.NotionFragmentStatusEnum;
 
 import java.time.LocalDateTime;
 
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
  */
 @Data
 @Builder
-public class NotionKnowledgeFragmentTable {
+public class KnowledgeFragmentInfo {
 
     /**
      * 标题
@@ -23,7 +23,7 @@ public class NotionKnowledgeFragmentTable {
     /**
      * tag
      */
-    private String tag;
+    private String tags;
 
     /**
      * 作者
@@ -38,7 +38,7 @@ public class NotionKnowledgeFragmentTable {
     /**
      * 当前处理状态
      */
-    private NotionFragmentStatusEnum status;
+    private FragmentProcessStatusEnum status;
 
     /**
      * 平台

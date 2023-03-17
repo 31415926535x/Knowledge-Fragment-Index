@@ -1,8 +1,8 @@
 package tech.x31415926535.business.saveindex.strategies;
 
 
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.bo.KnowledgeFragmentInfo;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.enums.save.WebContentTypeEnum;
-import tech.x31415926535.model.knowledgecurd.notion.cmd.NotionKnowledgeFragmentTable;
 
 public interface WebContentParser {
 
@@ -21,7 +21,7 @@ public interface WebContentParser {
      * @param url
      * @return
      */
-    NotionKnowledgeFragmentTable crawlerAndParseContent(String url);
+    KnowledgeFragmentInfo crawlerAndParseContent(String url);
 
 
 }

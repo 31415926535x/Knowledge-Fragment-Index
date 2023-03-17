@@ -2,9 +2,9 @@ package tech.x31415926535.business.saveindex.strategies.impl;
 
 import org.springframework.stereotype.Component;
 import tech.x31415926535.business.saveindex.strategies.AbstractContentParser;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.bo.KnowledgeFragmentInfo;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.enums.save.FragmentProcessStatusEnum;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.enums.save.WebContentTypeEnum;
-import tech.x31415926535.model.knowledgecurd.notion.cmd.NotionKnowledgeFragmentTable;
-import tech.x31415926535.model.knowledgecurd.notion.enums.NotionFragmentStatusEnum;
 
 import java.time.LocalDateTime;
 
@@ -20,11 +20,12 @@ public class DefaultWebContentParser extends AbstractContentParser {
     }
 
     @Override
-    public NotionKnowledgeFragmentTable crawlerAndParseContent(String url) {
-        return NotionKnowledgeFragmentTable.builder().title(url)
+    public KnowledgeFragmentInfo crawlerAndParseContent(String url) {
+        return KnowledgeFragmentInfo.builder().title(url)
+                .href(url)
                 .author("own")
                 .webContentTypeEnum(WebContentTypeEnum.UNKNOWN)
-                .status(NotionFragmentStatusEnum.NOT_STARTED)
+                .status(FragmentProcessStatusEnum.NOT_STARTED)
                 .dataChangeCreateTime(LocalDateTime.now()).build();
     }
 }

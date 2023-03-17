@@ -1,7 +1,9 @@
 package tech.x31415926535.service.converter;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
+import tech.x31415926535.model.knowledgecurd.common.rpc.ResponseEnvelope;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveResponse;
 
 import java.util.Objects;
@@ -14,11 +16,11 @@ import java.util.Objects;
 public class SaveKnowledgeFragmentIndexConverter {
 
 
-    public ResponseEntity<KnowledgeFragmentIndexSaveResponse> convertSaveResponse(KnowledgeFragmentIndexSaveResponse response) {
+    public ResponseEntity<ResponseEnvelope<KnowledgeFragmentIndexSaveResponse>> convertSaveResponse(KnowledgeFragmentIndexSaveResponse response) {
         if (Objects.isNull(response)) {
             return ResponseEntity.internalServerError().build();
         }
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ResponseEnvelope<>(HttpStatus.OK.value(), HttpStatus.OK.getReasonPhrase(), response));
     }
 
 }

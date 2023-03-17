@@ -19,11 +19,12 @@ public class WebContentParserFactory {
     private static final Map<WebContentTypeEnum, WebContentParser> MAP = Maps.newHashMap();
 
     @Resource
-    private static DefaultWebContentParser defaultWebContentParser;
+    private DefaultWebContentParser defaultWebContentParser;
 
     @PostConstruct
     public void init() {
         // todo
+        MAP.put(WebContentTypeEnum.UNKNOWN, defaultWebContentParser);
     }
 
 
@@ -33,7 +34,7 @@ public class WebContentParserFactory {
 
 
     public static WebContentParser getParser(WebContentTypeEnum typeEnum) {
-        return WebContentTypeEnum.UNKNOWN.equals(typeEnum) ? defaultWebContentParser : MAP.get(typeEnum);
+        return MAP.get(typeEnum);
     }
 
 

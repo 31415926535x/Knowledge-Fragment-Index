@@ -3,9 +3,9 @@ package tech.x31415926535.business.saveindex.strategies;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.bo.KnowledgeFragmentInfo;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveRequest;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.enums.save.WebContentTypeEnum;
-import tech.x31415926535.model.knowledgecurd.notion.cmd.NotionKnowledgeFragmentTable;
 
 
 /**
@@ -20,7 +20,7 @@ public abstract class AbstractContentParser implements WebContentParser {
     private static final String LOG_TITLE = "AbstractContentParser";
 
 
-    public NotionKnowledgeFragmentTable process(KnowledgeFragmentIndexSaveRequest request) {
+    public KnowledgeFragmentInfo process(KnowledgeFragmentIndexSaveRequest request) {
 
         // 1、解析入参，并选择合适的策略类
         WebContentTypeEnum webContentTypeEnum = WebContentParserFactory.parseAndGetType(request.getUrl());
@@ -28,7 +28,7 @@ public abstract class AbstractContentParser implements WebContentParser {
         WebContentParser parser = WebContentParserFactory.getParser(webContentTypeEnum);
 
         // 2、爬取获取网页上所有的内容; 转换、提取所需要的内容
-        NotionKnowledgeFragmentTable result = parser.crawlerAndParseContent(request.getUrl());
+        KnowledgeFragmentInfo result = parser.crawlerAndParseContent(request.getUrl());
 
         // 4、build done
         LOG.info(LOG_TITLE, "parse content is: {}", result);
@@ -53,6 +53,6 @@ public abstract class AbstractContentParser implements WebContentParser {
      * @return
      */
     @Override
-    public abstract NotionKnowledgeFragmentTable crawlerAndParseContent(String url);
+    public abstract KnowledgeFragmentInfo crawlerAndParseContent(String url);
 
 }
