@@ -1,6 +1,8 @@
 package knowledgecurd.knowledgefragment.curd;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import knowledgecurd.knowledgefragment.mapper.KnowledgeFragmentIndexBaseInfoMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.dto.KnowledgeFragmentIndexBasicInfoDto;
 
 import javax.annotation.Resource;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -33,5 +36,10 @@ public class KnowledgeFragmentIndexDao {
         return result;
     }
 
+    public List<KnowledgeFragmentIndexBasicInfoDto> queryAll() {
+        LambdaQueryWrapper<KnowledgeFragmentIndexBasicInfoDto> lambdaQuery = Wrappers.<KnowledgeFragmentIndexBasicInfoDto>lambdaQuery();
+        lambdaQuery.orderByDesc(KnowledgeFragmentIndexBasicInfoDto::getDataChangeCrateTime);
+        return mapper.selectList(lambdaQuery);
+    }
 }
 

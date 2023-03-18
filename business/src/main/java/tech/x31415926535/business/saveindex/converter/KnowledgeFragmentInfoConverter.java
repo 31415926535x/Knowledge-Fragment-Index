@@ -5,9 +5,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.bo.KnowledgeFragmentInfo;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.query.KnowledgeFragmentIndexInfo;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.dto.KnowledgeFragmentIndexBasicInfoDto;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * date: 2023/2/25
@@ -30,5 +33,20 @@ public class KnowledgeFragmentInfoConverter {
         return dto;
     }
 
+    public List<KnowledgeFragmentIndexInfo> convertInfo(List<KnowledgeFragmentIndexBasicInfoDto> list) {
+        return list.stream().map(l -> {
+            KnowledgeFragmentIndexInfo info = new KnowledgeFragmentIndexInfo();
+            info.setInfoId(l.getInfoId());
+            info.setInfoType(l.getInfoType());
+            info.setTags(l.
+                    getTags());
+            info.setUri(l.getUri());
+            info.setSummary(l.getSummary());
+            info.setSource(l.getSource());
+            info.setDataChangeLastTime(l.getDataChangeLastTime());
+            info.setDataChangeCrateTime(l.getDataChangeCrateTime());
+            return info;
+        }).collect(Collectors.toList());
+    }
 }
 

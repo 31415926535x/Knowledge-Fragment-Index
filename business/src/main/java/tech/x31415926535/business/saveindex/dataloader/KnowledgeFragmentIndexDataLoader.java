@@ -9,6 +9,7 @@ import tech.x31415926535.model.knowledgecurd.knowledgefragment.bo.KnowledgeFragm
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.dto.KnowledgeFragmentIndexBasicInfoDto;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * date: 2023/2/25
@@ -31,6 +32,10 @@ public class KnowledgeFragmentIndexDataLoader {
         KnowledgeFragmentIndexBasicInfoDto dto = converter.convert(info);
         LOG.info(LOG_TITLE, dto);
         dao.save(dto);
+    }
+
+    public List<KnowledgeFragmentIndexBasicInfoDto> queryAll() {
+        return dao.queryAll();
     }
 }
 

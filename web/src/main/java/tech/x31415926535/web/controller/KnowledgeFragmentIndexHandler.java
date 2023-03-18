@@ -7,12 +7,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.x31415926535.model.knowledgecurd.common.rpc.ResponseEnvelope;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.query.KnowledgeFragmentIndexInfo;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveRequest;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveResponse;
 import tech.x31415926535.service.KnowledgeFragmentIndexService;
 import tech.x31415926535.service.validate.SaveKnowledgeFragmentIndexValidate;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * date: 2023/1/2 18:05
@@ -47,6 +49,13 @@ public class KnowledgeFragmentIndexHandler {
         validate.checkSaveRequest(request);
 
         return service.save(request);
+    }
+
+
+    @ApiOperation("查询所有内容")
+    @PostMapping("/queryAll")
+    public ResponseEntity<ResponseEnvelope<List<KnowledgeFragmentIndexInfo>>> queryAll() {
+        return service.queryAll();
     }
 
 }
