@@ -24,6 +24,7 @@ import java.util.List;
 @RestController
 @ResponseBody
 @Api(value = "知识碎片服务接口")
+@CrossOrigin(origins = "*")
 public class KnowledgeFragmentIndexHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(KnowledgeFragmentIndexHandler.class);

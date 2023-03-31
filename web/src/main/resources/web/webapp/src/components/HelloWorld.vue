@@ -1,88 +1,115 @@
 <template>
   <v-container>
     <v-row class="text-center">
-
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
           知识碎片聚合
         </h1>
 
-        <p class="subheading font-weight-regular">
-          For help and collaboration with other Vuetify developers,
-          <br />please join our online
-          <a href="https://community.vuetifyjs.com" target="_blank"
-            >Discord Community</a
-          >
-        </p>
+        <v-form>
+          <v-text-field v-model="savePayLoad.url" prepend-inner-icon="mdi-link" clearable label="url"
+            hint="请输入一个url:(回车提交)" outlined :rules="[rules.required]" prepend-icon="mdi-vuetify">
+          </v-text-field>
 
-        <v-text-field
-          solo
-          hint="请输入一个url:(回车提交)"
-          label="url"
-          prepend-inner-icon="mdi-link"
-          outlined
-        ></v-text-field>
+          <v-btn class="me-4" @click="submit">
+            submit
+          </v-btn>
+        </v-form>
+
+        <br />
       </v-col>
-
     </v-row>
+
+    <v-table height="300px">
+      <thead>
+        <tr>
+          <th class="text-left">
+            infoId
+          </th>
+          <th class="text-left">
+            infoType
+          </th>
+          <th class="text-left">
+            source
+          </th>
+          <th class="text-left">
+            uri
+          </th>
+          <th class="text-left">
+            dataChangeCrateTime
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="item in allUrlInfo" :key="item.infoId">
+          <td>{{ item.infoId }}</td>
+          <td>{{ item.infoType }}</td>
+          <td>{{ item.source }}</td>
+          <td>{{ item.uri }}</td>
+          <td>{{ item.dataChangeCrateTime }}</td>
+        </tr>
+      </tbody>
+    </v-table>
   </v-container>
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'HelloWorld',
 
   data: () => ({
-    ecosystem: [
-      {
-        text: 'vuetify-loader',
-        href: 'https://github.com/vuetifyjs/vuetify-loader'
-      },
-      {
-        text: 'github',
-        href: 'https://github.com/vuetifyjs/vuetify'
-      },
-      {
-        text: 'awesome-vuetify',
-        href: 'https://github.com/vuetifyjs/awesome-vuetify'
-      }
-    ],
-    importantLinks: [
-      {
-        text: 'Documentation',
-        href: 'https://vuetifyjs.com'
-      },
-      {
-        text: 'Chat',
-        href: 'https://community.vuetifyjs.com'
-      },
-      {
-        text: 'Made with Vuetify',
-        href: 'https://madewithvuejs.com/vuetify'
-      },
-      {
-        text: 'Twitter',
-        href: 'https://twitter.com/vuetifyjs'
-      },
-      {
-        text: 'Articles',
-        href: 'https://medium.com/vuetify'
-      }
-    ],
-    whatsNext: [
-      {
-        text: 'Explore components',
-        href: 'https://vuetifyjs.com/components/api-explorer'
-      },
-      {
-        text: 'Select a layout',
-        href: 'https://vuetifyjs.com/getting-started/pre-made-layouts'
-      },
-      {
-        text: 'Frequently Asked Questions',
-        href: 'https://vuetifyjs.com/getting-started/frequently-asked-questions'
-      }
-    ]
-  })
+    rules: {
+      required: value => !!value || 'Field is required'
+    },
+    savePayLoad: {
+      url: ''
+    },
+    allUrlInfo: []
+  }),
+  created () {
+    console.log('first load...')
+    this.refreshAllTable()
+  },
+  methods: {
+    submit () {
+      console.log(233)
+      alert(JSON.stringify(this.savePayLoad))
+      axios.post('http://localhost:8080/knowledge/save', JSON.stringify(this.savePayLoad), {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function (res) {
+        if (res.data.code === 200) {
+          console.log(res.data)
+        }
+        console.log(res.data.msg)
+      }).catch(function (error) {
+        console.log(error)
+      })
+      alert('2333')
+
+      this.refreshAllTable()
+    },
+    refreshAllTable () {
+      let that = this
+      axios.post('http://localhost:8080/knowledge/queryAll', null, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }).then(function (res) {
+        if (res.data.code === 200) {
+          console.log(res.data)
+          that.allUrlInfo = []
+          that.allUrlInfo = res.data.data
+          console.log(res.data.data)
+          console.log(that.allUrlInfo)
+        }
+        console.log(res.data.msg)
+      }).catch(function (error) {
+        console.log(error)
+      })
+    }
+  }
 }
 </script>
