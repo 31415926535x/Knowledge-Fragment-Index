@@ -36,8 +36,14 @@ public class KnowledgeFragmentIndexDao {
         return result;
     }
 
+    public KnowledgeFragmentIndexBasicInfoDto queryFirst(String uri) {
+        KnowledgeFragmentIndexBasicInfoDto dto = new KnowledgeFragmentIndexBasicInfoDto();
+        dto.setUri(uri);
+        return mapper.selectOne(Wrappers.lambdaQuery(dto));
+    }
+
     public List<KnowledgeFragmentIndexBasicInfoDto> queryAll() {
-        LambdaQueryWrapper<KnowledgeFragmentIndexBasicInfoDto> lambdaQuery = Wrappers.<KnowledgeFragmentIndexBasicInfoDto>lambdaQuery();
+        LambdaQueryWrapper<KnowledgeFragmentIndexBasicInfoDto> lambdaQuery = Wrappers.lambdaQuery();
         lambdaQuery.orderByDesc(KnowledgeFragmentIndexBasicInfoDto::getDataChangeCrateTime);
         return mapper.selectList(lambdaQuery);
     }

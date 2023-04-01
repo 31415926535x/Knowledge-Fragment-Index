@@ -8,6 +8,7 @@ import tech.x31415926535.business.saveindex.strategies.AbstractContentParser;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.bo.KnowledgeFragmentInfo;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveRequest;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.cmd.save.KnowledgeFragmentIndexSaveResponse;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.enums.save.SaveTransactionStatusEnum;
 
 import javax.annotation.Resource;
 
@@ -34,21 +35,23 @@ public class SaveKnowledgeFragmentIndexProcessor {
 
         try {
             // 1、判断是url还是单纯的文章内容; 选择合适的爬取、解析处理器
-            KnowledgeFragmentInfo result = parser.process(request);
+            KnowledgeFragmentInfo knowledgeFragmentInfo = parser.process(request);
 
             // 2、拼接模板
 
             // 3、保存db
-            dataLoader.save(result);
+            SaveTransactionStatusEnum saveTransactionStatusEnum = dataLoader.save(knowledgeFragmentInfo);
 
             // 4、保存到notion指定的页面中
 
             // 5、返回结果
-            return new KnowledgeFragmentIndexSaveResponse();
+            KnowledgeFragmentIndexSaveResponse result = new KnowledgeFragmentIndexSaveResponse();
+            result.setSaveTransactionStatusEnum(saveTransactionStatusEnum);
+
+            return result;
         } catch (Exception ex) {
             LOG.error(LOG_TITLE, "save failed: {}", ex);
         }
-        return null;
-
+        return KnowledgeFragmentIndexSaveResponse.buildFailed();
     }
 }

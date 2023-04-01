@@ -3,7 +3,7 @@
     <v-row class="text-center">
       <v-col class="mb-4">
         <h1 class="display-2 font-weight-bold mb-3">
-          知识碎片聚合
+          知识碎片聚合服务
         </h1>
 
         <v-form>
@@ -16,40 +16,46 @@
           </v-btn>
         </v-form>
 
-        <br />
+      </v-col>
+      <v-col>
+        <div>
+          <v-table
+            theme="dark"
+            density="compact"
+            fixed-header
+            height="300px">
+            <thead>
+              <tr>
+                <th class="text-left">
+                  infoId
+                </th>
+                <th class="text-left">
+                  infoType
+                </th>
+                <th class="text-left">
+                  source
+                </th>
+                <th class="text-mid">
+                  uri
+                </th>
+                <th class="text-left">
+                  dataChangeCrateTime
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="item in allUrlInfo" :key="item.infoId">
+                <td>{{ item.infoId }}</td>
+                <td>{{ item.infoType }}</td>
+                <td>{{ item.source }}</td>
+                <td> <a :href="item.uri">{{ item.uri }}</a></td>
+                <td>{{ item.dataChangeCrateTime }}</td>
+              </tr>
+            </tbody>
+          </v-table>
+        </div>
       </v-col>
     </v-row>
-
-    <v-table height="300px">
-      <thead>
-        <tr>
-          <th class="text-left">
-            infoId
-          </th>
-          <th class="text-left">
-            infoType
-          </th>
-          <th class="text-left">
-            source
-          </th>
-          <th class="text-left">
-            uri
-          </th>
-          <th class="text-left">
-            dataChangeCrateTime
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in allUrlInfo" :key="item.infoId">
-          <td>{{ item.infoId }}</td>
-          <td>{{ item.infoType }}</td>
-          <td>{{ item.source }}</td>
-          <td>{{ item.uri }}</td>
-          <td>{{ item.dataChangeCrateTime }}</td>
-        </tr>
-      </tbody>
-    </v-table>
   </v-container>
 </template>
 

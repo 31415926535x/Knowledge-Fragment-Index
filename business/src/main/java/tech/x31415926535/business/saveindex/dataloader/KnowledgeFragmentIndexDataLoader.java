@@ -7,9 +7,11 @@ import org.springframework.stereotype.Component;
 import tech.x31415926535.business.saveindex.converter.KnowledgeFragmentInfoConverter;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.bo.KnowledgeFragmentInfo;
 import tech.x31415926535.model.knowledgecurd.knowledgefragment.dto.KnowledgeFragmentIndexBasicInfoDto;
+import tech.x31415926535.model.knowledgecurd.knowledgefragment.enums.save.SaveTransactionStatusEnum;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * date: 2023/2/25
@@ -27,11 +29,26 @@ public class KnowledgeFragmentIndexDataLoader {
     @Resource
     private KnowledgeFragmentIndexDao dao;
 
-    public void save(KnowledgeFragmentInfo info) {
+    public SaveTransactionStatusEnum save(KnowledgeFragmentInfo info) {
 
         KnowledgeFragmentIndexBasicInfoDto dto = converter.convert(info);
         LOG.info(LOG_TITLE, dto);
-        dao.save(dto);
+        KnowledgeFragmentIndexBasicInfoDto dbInfo = dao.queryFirst(dto.getUri());
+        if (Objects.isNull(dbInfo)) {
+            int result = 0;
+            try {
+                result = dao.save(dto);
+            } catch (Exception ex) {
+                LOG.error(LOG_TITLE, "save failed.");
+            }
+            if (result != 0) {
+                return SaveTransactionStatusEnum.SUCCEED;
+            }
+            return SaveTransactionStatusEnum.FAILED;
+        } else {
+            LOG.info(LOG_TITLE, "exist uri");
+            return SaveTransactionStatusEnum.REPEAT_INFO;
+        }
     }
 
     public List<KnowledgeFragmentIndexBasicInfoDto> queryAll() {
