@@ -25,17 +25,13 @@ public class SaveKnowledgeFragmentIndexProcessor {
 
 
     @Resource
-    private AbstractContentParser parser;
-
-
-    @Resource
     private KnowledgeFragmentIndexDataLoader dataLoader;
 
     public KnowledgeFragmentIndexSaveResponse save(KnowledgeFragmentIndexSaveRequest request) {
 
         try {
             // 1、判断是url还是单纯的文章内容; 选择合适的爬取、解析处理器
-            KnowledgeFragmentInfo knowledgeFragmentInfo = parser.process(request);
+            KnowledgeFragmentInfo knowledgeFragmentInfo = AbstractContentParser.process(request);
 
             // 2、拼接模板
 

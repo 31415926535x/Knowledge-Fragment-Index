@@ -33,6 +33,16 @@ public class KnowledgeFragmentIndexInfo {
     private String uri;
 
     /**
+     * 作者
+     */
+    private String author;
+
+    /**
+     * 标题
+     */
+    private String title;
+
+    /**
      * 摘要
      */
     private String summary;

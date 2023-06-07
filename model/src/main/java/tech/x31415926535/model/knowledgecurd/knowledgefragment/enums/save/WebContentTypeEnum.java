@@ -8,8 +8,19 @@ import lombok.Getter;
 public enum WebContentTypeEnum {
 
 
+    /**
+     * 未知
+     */
     UNKNOWN("Unknown"),
 
+    /**
+     * csdn
+     */
+    CSDN("csdn"),
+
+    /**
+     * 微信公众号
+     */
     WE_CHAT("WeChat"),
     ;
 

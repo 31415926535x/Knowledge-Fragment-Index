@@ -27,8 +27,10 @@ public class KnowledgeFragmentInfoConverter {
         dto.setInfoId(UUID.randomUUID().toString());
         dto.setInfoType(info.getWebContentTypeEnum().getType());
         // dto.setSource(info);
+        dto.setTitle(info.getTitle());
+        dto.setAuthor(info.getAuthor());
         dto.setUri(info.getHref());
-        // dto.setSummary(info.get);
+        dto.setSummary(info.getSummary());
         dto.setTags(info.getTags());
         return dto;
     }
@@ -38,9 +40,10 @@ public class KnowledgeFragmentInfoConverter {
             KnowledgeFragmentIndexInfo info = new KnowledgeFragmentIndexInfo();
             info.setInfoId(l.getInfoId());
             info.setInfoType(l.getInfoType());
-            info.setTags(l.
-                    getTags());
+            info.setTags(l.getTags());
+            info.setAuthor(l.getAuthor());
             info.setUri(l.getUri());
+            info.setTitle(l.getTitle());
             info.setSummary(l.getSummary());
             info.setSource(l.getSource());
             info.setDataChangeLastTime(l.getDataChangeLastTime());

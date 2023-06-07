@@ -20,7 +20,7 @@ public abstract class AbstractContentParser implements WebContentParser {
     private static final String LOG_TITLE = "AbstractContentParser";
 
 
-    public KnowledgeFragmentInfo process(KnowledgeFragmentIndexSaveRequest request) {
+    public static KnowledgeFragmentInfo process(KnowledgeFragmentIndexSaveRequest request) {
 
         // 1、解析入参，并选择合适的策略类
         WebContentTypeEnum webContentTypeEnum = WebContentParserFactory.parseAndGetType(request.getUrl());

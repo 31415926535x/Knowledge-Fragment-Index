@@ -36,6 +36,11 @@ public class KnowledgeFragmentInfo {
     private String href;
 
     /**
+     * 摘要内容
+     */
+    private String summary;
+
+    /**
      * 当前处理状态
      */
     private FragmentProcessStatusEnum status;
